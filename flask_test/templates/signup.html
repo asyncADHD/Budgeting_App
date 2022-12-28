@@ -50,7 +50,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 580px;
+    height: 520px;
     width: 400px;
     background-color: rgba(112, 112, 112, 0.414);
     position: absolute;
@@ -98,7 +98,7 @@ input{
     color: #e5e5e5;
 }
 button{
-    margin-top: 45px;
+    margin-top: 30px;
     width: 100%;
     background-color: 	#f7eef9;
     color: #080710;
@@ -130,7 +130,6 @@ button{
 .social i{
   margin-right: 4px;
 }
-
     </style>
 </head>
 <body>
@@ -141,6 +140,10 @@ button{
 
     <form action="/signup" method="post">
         <h3>Sign up</h3>
+
+        <label for="admincode" style="position: absolute; top: 0; right: 10; font-size: 11px;">Admin Code</label>
+        <input type="password" placeholder="Admin Code" id="admincode" name="admincode" size="4" 
+        style="position: absolute; height: 20px; top: 45px; right: 10; width: 80px; font-size: 8px;">
     
         <label for="username">Username</label>
         <input type="text" placeholder="Enter User Name " id="username" name="username">
@@ -151,7 +154,9 @@ button{
         <label for="password"> Confirm Password</label>
         <input type="password" placeholder="Confim Password" id="confimed_password" name="confimed_password">
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" name="button" value="signup">Sign Up</button>
+        <button type="submit" name="button" value="login">Login</button>
+
     </form> 
 </body>
 </html>

@@ -17,14 +17,16 @@ def login():
         # Get the user name and password from the form
         username = request.form['username']
         password = request.form['password']
+        result = DB_Functions.find_user_in_table(username)
+        if button =='login':
+            password_match = DB_Functions.check_if_pass_eq_hash(username, password)
+            if password_match == True:
+                return redirect(url_for('landing'))
  
 
         # Check if the user name and password are correct
         if button == 'signup':
             return redirect(url_for('signup'))
-        elif username in users and users[username] == password:
-            # If the login is successful, redirect to the home page
-            return redirect(url_for('landing'))
         else:
             # If the login is unsuccessful, show an error message
             error = 'Invalid username or password'
@@ -49,13 +51,18 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         confimed_password = request.form['confimed_password']
-
-        if password == confimed_password:
-            DB_Functions.add_hash_pass_to_db(username, password)
+        admin_code = request.form['admincode']
+        adm_hashed_pass = b"|\xbc\x11'\x17z(\x00\xce \xad\xb9?\xef\x08\xd4<l\xec?\x96\x08\xc7\xd8u\x80\xbb\x179\xd3\xa7\xb6"
+        check_adm_code = DB_Functions.adm_hash(admin_code)
+        if button == 'signup':
+            if adm_hashed_pass == check_adm_code:
+                if password == confimed_password:
+                    DB_Functions.add_hash_pass_to_db(username, password)
+            else:
+                error = "Invalid Admin Code'"
+                return render_template('signup.html', error=error)
     return render_template('signup.html')
 
 if __name__ == '__main__':
-    app.run(debug=1)
-    
-
+    app.run(port=8000,debug=True)
     
