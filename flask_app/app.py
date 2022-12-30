@@ -4,8 +4,6 @@ from App_Functions.DB_Functions import DB_Functions
 app = Flask(__name__)
 app.config['DEBUG'] = True
 loggen_in = False 
-# Create a dictionary to store the registered users and their passwords
-users = {'user1': 'password1', 'user2': 'password2'}
 DB_Functions.create_db_if_none()
 
 # Define the route for the login page
@@ -42,7 +40,7 @@ def home():
 
 @app.route('/home')
 def landing():
-    return render_template('landing.html')
+    return render_template('home.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
