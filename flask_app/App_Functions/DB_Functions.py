@@ -98,7 +98,5 @@ class DB_Functions():
         return hashed_password
 
 
-password_match = DB_Functions.check_if_pass_eq_hash('test1', 'test1')
-
-print (password_match)
+password_match, hashed_password = DB_Functions.check_if_pass_eq_hash('test1', 'test1')
 
